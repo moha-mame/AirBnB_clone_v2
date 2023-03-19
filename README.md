@@ -53,7 +53,7 @@ The *syntax* is: help \<command\>
 
 
 ## Authors
- 
+
 
 ## Contributors :two_men_holding_hands:
 [@Mohammed - Github](https://github.com/moha-mame) - [@Henok Belachew - Github](https://github.com/Henok-Belachew)
