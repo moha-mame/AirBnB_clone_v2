@@ -1,27 +1,15 @@
 #!/usr/bin/python3
 """ unique FileStorage instance for your application """
-from models.engine.file_storage import FileStorage
-from models.base_model import BaseModel
-from models.user import User
-from models.place import Place
-from models.state import State
-from models.city import City
-from models.amenity import Amenity
-from models.review import Review
+
+from os import getenv
 
 
-class Classes(dict):
-    """ classes """
-    def __getitem__(self, key):
-        """get item"""
-        try:
-            return super(Classes, self).__getitem__(key)
-        except Exception as e:
-            raise Exception("** class doesn't exist **")
+storage_t = getenv("HBNB_TYPE_STORAGE")
 
-
-models = [BaseModel, User, Place, State, City, Amenity, Review]
-classes = Classes(**{x.__name__: x for x in models})
-
-storage = FileStorage()
+if storage_t == "db":
+    from models.engine.db_storage import DBStorage
+    storage = DBStorage()
+else:
+    from models.engine.file_storage import FileStorage
+    storage = FileStorage()
 storage.reload()
