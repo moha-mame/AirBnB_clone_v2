@@ -4,13 +4,14 @@ BaseModel - Module
 Parent class to take care of the initialization,
 serialization and deserialization of instances
  """
-import uuid
+
 from datetime import datetime
 import models
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
+import uuid
 
 time = "%Y-%m-%dT%H:%M:%S.%f"
 
@@ -18,6 +19,7 @@ if models.storage_t == "db":
     Base = declarative_base()
 else:
     Base = object
+
 
 class BaseModel:
     """
@@ -51,25 +53,19 @@ class BaseModel:
             self.updated_at = self.created_at
 
     def __str__(self):
-        """String representation of a BaseModel instance"""
-        return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
-                                         self.__dict__)
-    def __repr__(self):
-        """
-            Return string representation of BaseModel class
-        """
+        """String representation of the BaseModel class"""
         return "[{:s}] ({:s}) {}".format(self.__class__.__name__, self.id,
                                          self.__dict__)
 
     def save(self):
-        """updates 'updated_at' instance with current datetime"""
+        """updates the attribute 'updated_at' with the current datetime"""
         self.updated_at = datetime.utcnow()
         models.storage.new(self)
         models.storage.save()
 
     def to_dict(self, save_fs=None):
         """Return dictionary representation of BaseModel class."""
-       new_dict = self.__dict__.copy()
+        new_dict = self.__dict__.copy()
         if "created_at" in new_dict:
             new_dict["created_at"] = new_dict["created_at"].strftime(time)
         if "updated_at" in new_dict:

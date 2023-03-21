@@ -4,7 +4,19 @@ Contains the FileStorage class
 """
 
 import json
-#import models
+import models
+from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+from hashlib import md5
+
+classes = {"Amenity": Amenity, "BaseModel": BaseModel, "City": City,
+           "Place": Place, "Review": Review, "State": State, "User": User}
+
 
 class FileStorage:
     """serializes instances to a JSON file & deserializes back to instances"""
@@ -15,7 +27,6 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-        #This method returns a dictionary of all objects stored in __objects.
         """returns the dictionary __objects"""
         if cls is not None:
             new_dict = {}
@@ -24,18 +35,14 @@ class FileStorage:
                     new_dict[key] = value
             return new_dict
         return self.__objects
-        #If a class is specified as an argument
-        #it returns a dictionary containing only objects of that class.
 
     def new(self, obj):
-        #This method adds a new object to __objects
         """sets in __objects the obj with key <obj class name>.id"""
         if obj is not None:
             key = obj.__class__.__name__ + "." + obj.id
             self.__objects[key] = obj
 
     def save(self):
-        #This method serializes all objects in __objects to a JSON file.
         """serializes __objects to the JSON file (path: __file_path)"""
         json_objects = {}
         for key in self.__objects:
@@ -46,7 +53,6 @@ class FileStorage:
             json.dump(json_objects, f)
 
     def reload(self):
-        # This method deserializes objects from a JSON file into __objects.
         """deserializes the JSON file to __objects"""
         try:
             with open(self.__file_path, 'r') as f:
@@ -57,7 +63,6 @@ class FileStorage:
             pass
 
     def delete(self, obj=None):
-        #This method removes an object from __objects, if it exists.
         """delete obj from __objects if it’s inside"""
         if obj is not None:
             key = obj.__class__.__name__ + '.' + obj.id
@@ -65,12 +70,10 @@ class FileStorage:
                 del self.__objects[key]
 
     def close(self):
-        # This method calls reload() to deserialize objects from a JSON file.
         """call reload() method for deserializing the JSON file to objects"""
         self.reload()
 
     def get(self, cls, id):
-        #This method returns an object from __objects
         """
         Returns the object based on the class name and its ID, or
         None if not found
@@ -86,7 +89,6 @@ class FileStorage:
         return None
 
     def count(self, cls=None):
-        #This method returns the number of objects in __objects.
         """
         count the number of objects in storage
         """

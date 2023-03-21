@@ -1,7 +1,7 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 """Place Module"""
-from models.base_model import BaseModel
 import models
+from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, Integer, Float, ForeignKey, Table
@@ -17,6 +17,7 @@ if models.storage_t == 'db':
                                  ForeignKey('amenities.id', onupdate='CASCADE',
                                             ondelete='CASCADE'),
                                  primary_key=True))
+
 
 class Place(BaseModel, Base):
     """Representation of Place """

@@ -1,11 +1,12 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 """City Module"""
-from models.base_model import BaseModel
 import models
+from models.base_model import BaseModel, Base
 from os import getenv
 import sqlalchemy
 from sqlalchemy import Column, String, ForeignKey
 from sqlalchemy.orm import relationship
+
 
 class City(BaseModel, Base):
     """Representation of city """
