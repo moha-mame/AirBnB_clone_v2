@@ -1,0 +1,8 @@
+fabfile.py
+/__pycache__/
+*/__pycache__/
+/*/__pycache/
+/*/*/__pycache__/
+/*/*/*/__pycache__/
+file.json
+*.swp
