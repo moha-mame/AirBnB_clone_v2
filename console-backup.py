@@ -33,7 +33,7 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit  the program"""
         return True
 
-#defines a function called _key_value_parser that takes a list of strings as an argument (args).
+#defines a function called _key_value_parser  that takes a list of strings as an argument (args).
 #The function's purpose is to create a dictionary from this list of strings, where each string represents a key-value pair.
 
     def _key_value_parser(self, args):
