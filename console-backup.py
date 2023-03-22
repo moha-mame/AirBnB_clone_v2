@@ -64,7 +64,7 @@ class HBNBCommand(cmd.Cmd):
                         except:
                             continue
 #checks if the value is enclosed in double quotes
-#If it is, it removes the quotes and replaces any underscores in the value with spaces.
+#If it is,  it removes the quotes and replaces any underscores in the value with spaces.
 #If the value is not enclosed in quotes,
 # it tries to convert it to an integer using the int() function.
 # If that fails, it tries to convert it to a float using the float() function.
