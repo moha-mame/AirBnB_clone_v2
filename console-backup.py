@@ -30,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
         return False
 
     def do_quit(self, arg):
-        """Quit command to exit the program"""
+        """Quit command to exit  the program"""
         return True
 
 #defines a function called _key_value_parser that takes a list of strings as an argument (args).
