@@ -10,7 +10,6 @@ def do_pack():
 
     """Create a .tgz archive from the contents of web_static folder."""
 
-
     m_date = datetime.utcnow().strftime('%Y%m%d%H%M%S')
     file_path = "versions/web_static_{}.tgz".format(m_date)
     try:
