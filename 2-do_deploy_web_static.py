@@ -24,7 +24,7 @@ def do_pack():
 
 def do_deploy(archive_path):
     """Distribute the archive to the web servers."""
-    
+
     if archive_path is None or os.path.isfile(archive_path) is False:
         return False
 
