@@ -2,31 +2,23 @@
 """
 Starting my first Flask web application
 """
+from flask import Flask, render_template
 from models import storage
 from models.state import State
-from os import environ
-from flask import Flask, render_template
 app = Flask(__name__)
 
 
-@app.teardown_appcontext
-def close_db(error):
-    """
-    Remove the SQLAlchemy session
-    """
-    storage.close()
-
-
 @app.route('/states_list', strict_slashes=False)
-def list_states():
-    """
-    A route that displays cities in our database in html
-    """
+def states_list():
     states = storage.all(State).values()
-    states = sorted(states, key=lambda k: k.name)
+    states = sorted(states, key=lambda x: x.name)
     return render_template('7-states_list.html', states=states)
 
 
-if __name__ == "__main__":
-    """ Main Function """
-    app.run(host='0.0.0.0', port=5000, debug=True)
+@app.teardown_appcontext
+def teardown_db(exception):
+    storage.close()
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
