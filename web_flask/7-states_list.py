@@ -3,8 +3,10 @@
 Starting my first Flask web application
 """
 from flask import Flask, render_template
+import sys
+sys.path.insert(1, '/AirBnB_clone_v2')
 from models import storage
-from models.state import State
+
 app = Flask(__name__)
 
 
