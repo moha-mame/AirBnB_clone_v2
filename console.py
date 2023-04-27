@@ -68,7 +68,7 @@ class HBNBCommand(cmd.Cmd):
             return False
         print(instance.id)
         instance.save()
-        
+    
     def do_show(self, arg):
         """Prints an instance as a string based on the class and id"""
         args = shlex.split(arg)
